@@ -1,12 +1,10 @@
 <div>
   <div>
-    <h1>
-      List of all categories
+    <h1 class = "d-flex align-items-center justify-content-center" style="height: 50vh;">
+      Select a cateogry
     </h1>
   </div>
 </div>
-
-<hr>
 
 <div>
   <div>
@@ -30,57 +28,11 @@
   </div>
 </div>
 
-<hr>
 <div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Name
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_categories.each do |a_category| %>
-      <tr>
-        <td>
-          <%= a_category.id %>
-        </td>
-
-        <td>
-          <%= a_category.name %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_category.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_category.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/categories/<%= a_category.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
+  <% @list_of_categories.each do |a_category| %>
+    <button type="button" class="btn btn-primary text-white" style="background-color: #<%= "%06x" % (rand * 0xffffff) %>; border-color: #<%= "%06x" % (rand * 0xffffff) %>;">
+      <a href="/categories/<%= a_category.id %>" class="text-white"><%= a_category.name %></a>
+    </button>  
+  <% end %>
 </div>
 
-<hr>
