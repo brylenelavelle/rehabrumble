@@ -10,10 +10,32 @@ class CategoriesController < ApplicationController
   def show
     the_id = params.fetch("path_id")
 
-    matching_categories = Category.where({ :id => the_id })
+    @the_category = Category.where({ :id => the_id }).first
+    @questions = Question.where({ :category_id => the_id }).shuffle
+    @questions_total = @questions.length
+    @questions_answered = params.fetch(:questions_answered, 0).to_i
+    @current_question = @questions[@questions_answered]
 
-    @the_category = matching_categories.at(0)
+    if session[:score].nil?
+      session[:score] = 0
+    end
 
+    if @questions_answered == @questions_total
+      # All questions have been answered, show the final score
+      @result = "Final Score: #{session[:score]}/#{@questions_total}"
+      session[:score] = 0
+    elsif params[:answer]
+      # A question was answered, check if the chosen answer is correct
+      chosen_answer = params[:answer]
+      if chosen_answer == @current_question.correct_answer
+        session[:score] += 1
+        @result = "Correct!"
+      else
+        @result = "Incorrect!"
+      end
+      @questions_answered += 1
+      @current_question = @questions[@questions_answered]
+    end
     render({ :template => "categories/show.html.erb" })
   end
 

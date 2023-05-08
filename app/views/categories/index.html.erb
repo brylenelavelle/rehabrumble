@@ -6,33 +6,10 @@
   </div>
 </div>
 
-<div>
-  <div>
-    <h2>
-      Add a new category
-    </h2>
-
-    <form action="/insert_category" method="post">
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name">
-      </div>
-
-      <button>
-        Create category
-      </button>
-    </form>
-  </div>
-</div>
-
-<div>
+<div class="d-flex justify-content-center align-items-end" style ="height: 5vh;">
   <% @list_of_categories.each do |a_category| %>
-    <button type="button" class="btn btn-primary text-white" style="background-color: #<%= "%06x" % (rand * 0xffffff) %>; border-color: #<%= "%06x" % (rand * 0xffffff) %>;">
+    <button type="button" class="btn btn-primary text-white custom-btn-size mx-3" style="background-color: #<%= "%06x" % (rand * 0xffffff) %>; border-color: #<%= "%06x" % (rand * 0xffffff) %>; padding: 50px 50px; font-size: 30px; width: 300px;">
       <a href="/categories/<%= a_category.id %>" class="text-white"><%= a_category.name %></a>
     </button>  
   <% end %>
 </div>
-

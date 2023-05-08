@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # Home
-  get("/", { :controller => "questions", :action => "index" })
+  get("/", { :controller => "categories", :action => "index" })
 
   # Routes for the Test question resource:
 

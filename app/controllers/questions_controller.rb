@@ -3,12 +3,6 @@ class QuestionsController < ApplicationController
     matching_questions = Question.all
 
     @list_of_questions = matching_questions.order({ :created_at => :desc })
-
-    if @current_user.present?
-      render({ :template => "questions/index.html.erb" })
-    else
-      redirect_to("/user_sign_in")
-    end
   end
 
   def show

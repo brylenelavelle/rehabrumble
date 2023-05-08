@@ -19,4 +19,8 @@ class Question < ApplicationRecord
   belongs_to(:category, { :required => true, :class_name => "Category", :foreign_key => "category_id" })
 
   belongs_to(:source_file, { :required => true, :class_name => "SourceFile", :foreign_key => "source_file_id" })
+
+  def answers
+    [correct_answer, wrong_answer_1, wrong_answer_2, wrong_answer_3].shuffle
+  end
 end
