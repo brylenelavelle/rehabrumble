@@ -70,3 +70,18 @@
   justify-content: center;
   font-size: 50px;
 }
+
+.category-background {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(135deg, #F38DFC, #F68D64, #5BD5A7, #FED237, #7F7FD5);
+}
+
+.category{
+  display: flex;
+  flex-direction: column;
+  background-image: url('/assets/images/therapygym.jpg');
+  background-size: cover;
+  background-position: center;
+}

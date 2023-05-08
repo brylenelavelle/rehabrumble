@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
     matching_questions = Question.all
 
     @list_of_questions = matching_questions.order({ :created_at => :desc })
+    render({ :template => "questions/index.html.erb" })
   end
 
   def show

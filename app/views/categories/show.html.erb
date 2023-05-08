@@ -1,23 +1,24 @@
-<div>
+<div class="category">
   <div>
     <a href="/categories">
-        Go back
+      Go back
     </a>
   </div>
 
-  <div class = "category-name">
+  <div class="category-name">
     <%= @the_category.name %>
   </div>
+
+  <% if @questions_answered == @questions_total %>
+    <h2>Final Score: <%= session[:score] %>/#{@questions_total}</h2>
+  <% else %>
+    <%= form_tag("/categories/#{@the_category.id}", { :method => "get", :questions_answered => @questions_answered }) do %>
+      <h2><%= @current_question.question %></h2>
+      <% @current_question.answers.each do |answer| %>
+        <%= radio_button_tag "answer", answer %> <%= answer %><br>
+      <% end %>
+      <%= submit_tag "Next Question" %>
+    <% end %>
+  <% end %>
 </div>
 
-<% if @result == "Final Score: #{@score}/#{@questions_total}" %>
-  <h2><%= @result %></h2>
-<% else %>
-  <%= form_tag({ :controller => "categories", :action => "show", :questions_answered => @questions_answered }, { :method => "get" }) do %>
-    <h2><%= @current_question.question %></h2>
-    <% @current_question.answers.each do |answer| %>
-      <%= radio_button_tag "answer", answer %> <%= answer %><br>
-    <% end %>
-    <%= submit_tag "Next Question" %>
-  <% end %>
-<% end %>

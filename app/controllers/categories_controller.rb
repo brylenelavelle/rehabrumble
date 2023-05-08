@@ -10,28 +10,38 @@ class CategoriesController < ApplicationController
   def show
     the_id = params.fetch("path_id")
 
+    # To navigate to Category list
     @the_category = Category.where({ :id => the_id }).first
+
+    # To navigate to Question list
     @questions = Question.where({ :category_id => the_id }).shuffle
+
+    # To get total number of questions
     @questions_total = @questions.length
+
+    # Fetch answer and match it to current question
     @questions_answered = params.fetch(:questions_answered, 0).to_i
     @current_question = @questions[@questions_answered]
 
+    # If no question has been answered yet
+    # Score is zero
     if session[:score].nil?
       session[:score] = 0
     end
 
     if @questions_answered == @questions_total
       # All questions have been answered, show the final score
+      # Then redirect to /tests page where it shows
+      # score and list of all questions
       @result = "Final Score: #{session[:score]}/#{@questions_total}"
-      session[:score] = 0
-    elsif params[:answer]
+    else
       # A question was answered, check if the chosen answer is correct
       chosen_answer = params[:answer]
       if chosen_answer == @current_question.correct_answer
         session[:score] += 1
-        @result = "Correct!"
+        @answer = "Correct!"
       else
-        @result = "Incorrect!"
+        @answer = "Incorrect!"
       end
       @questions_answered += 1
       @current_question = @questions[@questions_answered]

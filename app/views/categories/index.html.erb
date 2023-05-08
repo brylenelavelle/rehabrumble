@@ -1,15 +1,15 @@
-<div>
-  <div>
-    <h1 class = "d-flex align-items-center justify-content-center" style="height: 50vh;">
-      Select a cateogry
-    </h1>
-  </div>
-</div>
+<div class = "category-background">
+  
+  <h1 class = "d-flex align-items-center justify-content-center text-white" style="height: 50vh; font-family: sans-serif;">
+    Select a cateogry
+  </h1>
+  
 
-<div class="d-flex justify-content-center align-items-end" style ="height: 5vh;">
+  <div class="d-flex justify-content-center align-items-end" style ="height: 5vh;">
   <% @list_of_categories.each do |a_category| %>
     <button type="button" class="btn btn-primary text-white custom-btn-size mx-3" style="background-color: #<%= "%06x" % (rand * 0xffffff) %>; border-color: #<%= "%06x" % (rand * 0xffffff) %>; padding: 50px 50px; font-size: 30px; width: 300px;">
-      <a href="/categories/<%= a_category.id %>" class="text-white"><%= a_category.name %></a>
+      <a href="/categories/<%= a_category.id %>" class="text-white" style = "text-decoration: none;"><%= a_category.name %></a>
     </button>  
   <% end %>
+  </div>
 </div>
