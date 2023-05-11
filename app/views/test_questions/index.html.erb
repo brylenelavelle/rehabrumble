@@ -7,9 +7,13 @@
       </div>
       <form action="/modify_test_question/<%= a_test_question.id %>">
         <% a_test_question.question.answers.each do |answer| %>
-          <button class="long-button" type="submit" name="answer" value="<%= answer %>">
-            <%= answer %>
-          </button>
+          <div class="long-button">
+            <input type="radio" id="<%= answer %>" name="answer" value="<%= answer %>">
+            <label for="<%= answer %>">
+              <i class="icon fas fa-heartbeat"></i> <!-- Heartbeat icon -->
+              <%= answer %>
+            </label>
+          </div>
         <% end %>
         <% if @list_of_test_questions.last == a_test_question %>
           <button class="submit-button" type="submit">Submit</button>
