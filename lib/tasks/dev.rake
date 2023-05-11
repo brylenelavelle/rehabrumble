@@ -8,8 +8,6 @@ if Rails.env.development? || Rails.env.test?
       csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
       source_file = SourceFile.create(file_name: "sample-questions-1.csv", name: "sample-questions-1")
       csv.each do |row|
-        puts row.to_hash
-        # {"Category Name"=>"Neurology", "Question"=>"Which of the following contain the cerebrospinal fluid and major arteries?", "Wrong Answer 1 "=>"Dura mater", "Wrong Answer 2"=>"Pia mater", "Wrong Answer 3"=>"Arachnoid", "Correct Answer"=>"Subarachnoid space", nil=>nil}
         category = Category.find_or_create_by(name: row.fetch("Category Name"))
         question = Question.find_or_create_by(
           source_file: source_file,
@@ -20,6 +18,24 @@ if Rails.env.development? || Rails.env.test?
           wrong_answer_2: row.fetch("Wrong Answer 2"),
           wrong_answer_3: row.fetch("Wrong Answer 3"),
         )
+      end
+    end
+
+    desc "Create sample users and tests"
+    task sample_data: :environment do
+      raise "Cannot create sample data. Please upload at least 5 questions." if Question.count < 5
+
+      10.times do |_|
+        # create user
+        username = Faker::Name.first_name.downcase.split(" ").join("-")
+        user = User.find_or_create_by(email: "#{username}@example.com") do |u|
+          u.password = "password"
+        end
+
+        puts "Created user #{user.email}"
+        # create tests
+        source_file = SourceFile.all.sample
+        test = user.tests.create(source_file: source_file)
       end
     end
   end
