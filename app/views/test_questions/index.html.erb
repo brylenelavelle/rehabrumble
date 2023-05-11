@@ -42,26 +42,7 @@
       <% @list_of_test_questions.each do |a_test_question| %>
       <tr>
         <td>
-          <%= a_test_question.id %>
-        </td>
-
-        <td>
-          <%= a_test_question.test_id %>
-        </td>
-
-        <td>
-          <%= a_test_question.question_id %>
-        </td>
-
-        <td>
-          <%= a_test_question.correct %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_test_question.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_test_question.updated_at) %> ago
+          <%= a_test_question.question %>
         </td>
 
         <td>
