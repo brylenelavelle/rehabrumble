@@ -19,9 +19,9 @@ class TestQuestionsController < ApplicationController
 
   def create
     the_test_question = TestQuestion.new
-    the_test_question.test_id = params.fetch("query_test_id")
-    the_test_question.question_id = params.fetch("query_question_id")
-    the_test_question.correct = params.fetch("query_correct", false)
+    #the_test_question.test_id = params.fetch("query_test_id")
+    #the_test_question.question_id = params.fetch("query_question_id")
+    #the_test_question.correct = params.fetch("query_correct", false)
 
     if the_test_question.valid?
       the_test_question.save
@@ -41,7 +41,7 @@ class TestQuestionsController < ApplicationController
 
     if the_test_question.valid?
       the_test_question.save
-      redirect_to("/test_questions/#{the_test_question.id}", { :notice => "Test question updated successfully."} )
+      redirect_to("/test_questions/#{the_test_question.id}", { :notice => "Test question updated successfully." })
     else
       redirect_to("/test_questions/#{the_test_question.id}", { :alert => the_test_question.errors.full_messages.to_sentence })
     end
@@ -53,6 +53,6 @@ class TestQuestionsController < ApplicationController
 
     the_test_question.destroy
 
-    redirect_to("/test_questions", { :notice => "Test question deleted successfully."} )
+    redirect_to("/test_questions", { :notice => "Test question deleted successfully." })
   end
 end

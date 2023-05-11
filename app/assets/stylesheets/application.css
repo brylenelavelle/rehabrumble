@@ -85,3 +85,71 @@
   background-size: cover;
   background-position: center;
 }
+
+.test-background{
+  background-color: #FFC8C8;
+  background-image: linear-gradient(to bottom, #FFC8C8, #FF7F7F);
+}
+
+body {
+  background-color: #FEDCD0;
+  background-image: linear-gradient(to bottom, #FEDCD0, #FFA69E);
+}
+
+/* Styles for the long buttons */
+.long-button {
+  display: block;
+  margin: 5px;
+  padding: 10px 15px;
+  background-color: #FF6B6B;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.long-button:hover {
+  transform: scale(1.05);
+}
+
+/* Styles for the colorful question blocks */
+.question-block {
+  background-color: #FCE3D4;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.question-text {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #FF6B6B;
+}
+
+/* Styles for the submit button */
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 15px 20px;
+  background-color: #FF6B6B;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.submit-button:hover {
+  transform: scale(1.05);
+}

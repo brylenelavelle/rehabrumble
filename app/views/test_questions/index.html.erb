@@ -1,57 +1,21 @@
+<hr>
 <div>
   <div>
-    <h1>
-      List of All Questions
-    </h1>
-  </div>
-</div>
-
-</div>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Test
-        </th>
-
-        <th>
-          Question
-        </th>
-
-        <th>
-          Correct
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_test_questions.each do |a_test_question| %>
-      <tr>
-        <td>
-          <%= a_test_question.question %>
-        </td>
-
-        <td>
-          <a href="/test_questions/<%= a_test_question.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+    <% @list_of_test_questions.each do |a_test_question| %>
+      <div class="question-block">
+        <p class="question-text"><%= a_test_question.question.question %></p>
+      </div>
+      <form action="/modify_test_question/<%= a_test_question.id %>">
+        <% a_test_question.question.answers.each do |answer| %>
+          <button class="long-button" type="submit" name="answer" value="<%= answer %>">
+            <%= answer %>
+          </button>
+        <% end %>
+        <% if @list_of_test_questions.last == a_test_question %>
+          <button class="submit-button" type="submit">Submit</button>
+        <% end %>
+      </form>
+      <br> <!-- Add a line break for spacing between questions -->
+    <% end %>
   </div>
 </div>
